@@ -1,0 +1,16 @@
+<div class="container-fluid">
+  <!-- Search bar and Categories Menu -->
+  <div class="header">
+    <div class="input-group">
+      <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Categories</button>
+      <ul class="dropdown-menu" >
+        <li *ngFor="let category of categoryList" [routerLink]="['/category', category._id]"><a class="dropdown-item" (click)="getProductsOfCategory()"  routerLinkActive="active">{{ category.name }}</a></li>
+      </ul>
+      <input type="text" class="form-control" placeholder="Search Products">
+    </div>&nbsp;&nbsp;&nbsp;
+    <!-- Cart button -->
+    <button type="button" class="btn btn-secondary">Cart</button>
+  </div>
+
+
+</div>
