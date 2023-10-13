@@ -16,6 +16,9 @@ export class LandingPageComponent {
       this.categoryService.getCategories().subscribe((catList:any) => {
           this.categoryList = catList;
       });
+      this.activatedRoute.params.subscribe((params: Params) => {
+          console.log('onInit catId:', params['catId']);
+      });
     }
 
     // getProductsOfCategory(){
