@@ -11,4 +11,8 @@ export class CategoryService {
   getCategories(){
     return this.webService.get('category');
   }
+
+  getCategoryId(catName:string){
+    return this.webService.get(`category/${ catName }`);
+  }
 }

@@ -1,16 +1,60 @@
-<div class="container-fluid">
+<div class="container-fluid overflow-x-hidden">
   <!-- Search bar and Categories Menu -->
   <div class="header">
     <div class="input-group">
-      <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Categories</button>
-      <ul class="dropdown-menu" >
-        <li *ngFor="let category of categoryList" [routerLink]="['/category', category._id]"><a class="dropdown-item" (click)="getProductsOfCategory()"  routerLinkActive="active">{{ category.name }}</a></li>
+      <button
+        class="btn btn-secondary dropdown-toggle"
+        type="button"
+        data-bs-toggle="dropdown"
+        aria-expanded="false" id="btn-secondary"
+      >
+        Categories
+      </button>
+      <ul class="dropdown-menu">
+        <li routerLink="../../">
+          <a class="dropdown-item">All Products</a>
+        </li>
+        <li
+          *ngFor="let category of categoryList"
+          [routerLink]="['/category', category._id]"
+        >
+          <a class="dropdown-item" routerLinkActive="active">{{
+            category.name
+          }}</a>
+        </li>
       </ul>
-      <input type="text" class="form-control" placeholder="Search Products">
-    </div>&nbsp;&nbsp;&nbsp;
+      <input type="text" class="form-control" placeholder="Search Products" #filter/>
+    </div>
+    &nbsp;&nbsp;&nbsp;
     <!-- Cart button -->
-    <button type="button" class="btn btn-secondary">Cart</button>
+    <button type="button" class="btn btn-secondary" id="btn-secondary">cart</button>
   </div>
 
-
+  <div class="card-deck">
+    <div *ngFor="let prod of productList">
+      <!-- Card -->
+      <div class="card bg-light h-100 p-4 text-dark text-center m-3">
+        <div
+          class="bg-image hover-overlay ripple"
+          data-mdb-ripple-color="light"
+        >
+          <img class="card-img-top" alt="Image not found" />
+          <a href="#!">
+            <div
+              class="mask"
+              style="background-color: rgba(251, 251, 251, 0.15)"
+            ></div>
+          </a>
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">{{ prod["name"] }}</h5>
+          <p class="card-text">Rs. {{ prod["price"] }}</p>
+        </div>
+        <div class="mt-auto">
+          <a class="btn btn-primary" [routerLink]="['../product', prod._id]">View</a>&nbsp;&nbsp;&nbsp;
+        </div>
+      </div>
+      <!--End Card -->
+    </div>
+  </div>
 </div>

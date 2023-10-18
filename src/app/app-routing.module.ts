@@ -6,6 +6,7 @@ const routes: Routes = [
   { path:'', redirectTo:'category', pathMatch:'full'},
   { path:'category', component:LandingPageComponent },
   { path:'category/:catId', component:LandingPageComponent },
+  { path:'product' , loadChildren:()=> import('./product/product.module').then(m => m.ProductModule) },
 
 ];
 

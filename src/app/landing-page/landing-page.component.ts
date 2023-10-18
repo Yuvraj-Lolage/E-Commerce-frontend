@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CategoryService } from '../Services/category.service';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import { ProductService } from '../Services/product.service';
 
 @Component({
   selector: 'app-landing-page',
@@ -9,28 +10,36 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 })
 export class LandingPageComponent {
 
+  productList:any;
   categoryList:any;
-    constructor(private categoryService:CategoryService, private activatedRoute:ActivatedRoute, private router:Router){ }
+  categoryId:any;
+    constructor(private categoryService:CategoryService, private activatedRoute:ActivatedRoute, private router:Router, private productService:ProductService){ }
 
     ngOnInit(){
       this.categoryService.getCategories().subscribe((catList:any) => {
           this.categoryList = catList;
       });
+
+      this.productService.getProducts().subscribe((prodList:any) => {
+        this.productList = prodList;
+      });
+
       this.activatedRoute.params.subscribe((params: Params) => {
-          console.log('onInit catId:', params['catId']);
+        this.categoryId = params['catId'];
+        // console.log("Ng ON init=>",this.categoryId);
+        if(this.categoryId != undefined){
+          this.getProductsOfCategory(this.categoryId);
+        }
+
       });
     }
 
-    // getProductsOfCategory(){
-    //   this.activatedRoute.params.subscribe((param:Params) => {
-    //     console.log(param['catId']);
-    //   });
-    // }
-    getProductsOfCategory() {
-      this.activatedRoute.params.subscribe((params: Params) => {
-        console.log('Params:', params);
-        console.log('catId:', params['catId']);
+
+    getProductsOfCategory(cId:any) {
+      this.productService.getProductsFromCategory(cId).subscribe((prodList:any) => {
+        this.productList = prodList;
       });
+
     }
 
 

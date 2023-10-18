@@ -1,0 +1,30 @@
+<div class="centered-div">
+  <div class="form-container">
+    <h1 class="text-center">Add Product</h1>
+    <form>
+      <div class="form-group">
+        <label for="formGroupExampleInput">Product Name</label>
+        <input #prdName type="text" class="form-control" id="formGroupExampleInput" placeholder="Enter product name">
+      </div>
+      <label for="formGroupExampleInput">Product's Category</label>
+      <select #categorySelect class="form-select" aria-label="Default select example" (change)="getCategoryId(categorySelect.value)">
+        <option selected>Select</option>
+        <option *ngFor="let category of categoryList" >{{ category.name }}</option>
+
+      </select>
+      <div class="form-group">
+        <label for="formGroupExampleInput2">Price</label>
+        <input #prdPrice type="text" class="form-control" id="formGroupExampleInput2" placeholder="Enter price">
+      </div>
+
+      <div class="mb-3">
+        <label for="formFile" class="form-label">Choose Product Image</label>
+        <input class="form-control" type="file" name="formFile">
+      </div>
+
+      <div class="buttons">
+        <a class="btn btn-success" (click)="addProduct(prdName.value, prdPrice.value)">Add Product</a>
+      </div>
+    </form>
+  </div>
+</div>
