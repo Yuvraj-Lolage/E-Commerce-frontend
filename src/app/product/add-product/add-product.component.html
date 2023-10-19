@@ -4,7 +4,7 @@
     <form>
       <div class="form-group">
         <label for="formGroupExampleInput">Product Name</label>
-        <input #prdName type="text" class="form-control" id="formGroupExampleInput" placeholder="Enter product name">
+        <input #prdName type="text" class="form-control" id="formGroupExampleInput" placeholder="Enter product name" required>
       </div>
       <label for="formGroupExampleInput">Product's Category</label>
       <select #categorySelect class="form-select" aria-label="Default select example" (change)="getCategoryId(categorySelect.value)">

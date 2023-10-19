@@ -13,6 +13,7 @@ export class AddProductComponent {
   categoryList:any;
   currCategoryId:any;
 
+  productName = ""
   pName:String = "";
   pPrice:String = ""
   constructor(private categoryService:CategoryService, private productService:ProductService, private router:Router){

@@ -3,7 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 
 const routes: Routes = [
-  { path:'', redirectTo:'category', pathMatch:'full'},
+  // { path:'', redirectTo:'category', pathMatch:'full'},
+  { path:'', loadChildren:() => import('./auth/auth.module').then(m => m.AuthModule) },
   { path:'category', component:LandingPageComponent },
   { path:'category/:catId', component:LandingPageComponent },
   { path:'product' , loadChildren:()=> import('./product/product.module').then(m => m.ProductModule) },

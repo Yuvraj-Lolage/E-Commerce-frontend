@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import { MyLocalStorageService } from 'src/app/Services/my-local-storage.service';
 import { ProductService } from 'src/app/Services/product.service';
 
 @Component({
@@ -12,13 +13,25 @@ export class ViewProductComponent {
   currProductId:any;
   currCategoryId:any;
   confirmation:any;
-  constructor(private activatedRoute:ActivatedRoute, private productService:ProductService, private router:Router){}
+  role:string = "";
+  constructor(private activatedRoute:ActivatedRoute, private productService:ProductService, private router:Router,
+              private storageService:MyLocalStorageService){}
 
   ngOnInit(){
+
+    // To check User Role
+    const email = this.storageService.getItem('email');
+    const password = this.storageService.getItem('password');
+    if(email?.match("admin@gmail.com") && password?.match("admin")){
+      this.role = "admin";
+    }
+    else{
+      this.role = "user";
+    }
+    //To gate product With ID
     this.activatedRoute.params.subscribe((params:Params) => {
       this.currProductId = params['id'];
       this.productService.getProductWithId(params['id']).subscribe((response:any) => {
-        // console.log(response);
         this.product = response;
         this.currCategoryId = response[0]._categoryId;
         console.log("category Id= ",this.currCategoryId);

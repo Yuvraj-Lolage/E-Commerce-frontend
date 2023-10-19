@@ -13,10 +13,15 @@
             <div class="d-flex justify-content-between total font-weight-bold mt-4">
               <span>Total</span><span>₹ {{ prod.price }}</span>
             </div>
-            <div style="text-align: center;">
+            <div style="text-align: center;" *ngIf="role == 'admin' else elseBlock">
               <a class="btn btn-secondary">Update</a>
               <a class="btn btn-danger m-1" (click)="deleteProduct()">Delete</a>
             </div>
+            <ng-template #elseBlock>
+              <div style="text-align: center;">
+                <a class="btn btn-success">Add to Cart</a>
+              </div>
+            </ng-template>
           </div>
         </div>
       </div>

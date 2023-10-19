@@ -2,3 +2,8 @@
 .col-sm-2{
   background-color: #E7E7E7;
 }
+
+.col-sm-10
+{
+  min-height: 100vh;
+}

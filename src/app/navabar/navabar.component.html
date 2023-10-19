@@ -1,12 +1,12 @@
 <ul class="nav flex-column position-fixed">
   <li class="nav-item">
-    <a class="nav-link" routerLink=''>Home</a>
+    <a class="nav-link" routerLink='category'>Home</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link active" routerLink="product/add-product">Add Product</a>
+    <a class="nav-link active" routerLink="product/add-product" *ngIf="role == 'admin'">Add Product</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="#">Link</a>
+    <a class="nav-link" href="#" *ngIf="role == 'admin'">Add Category</a>
   </li>
   <li class="nav-item">
     <a class="nav-link" href="#">Link</a>
