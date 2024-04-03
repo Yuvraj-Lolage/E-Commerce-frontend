@@ -10,37 +10,42 @@ import { ProductService } from 'src/app/Services/product.service';
 })
 export class AddProductComponent {
 
-  categoryList:any;
-  currCategoryId:any;
+  categoryList: any;
+  currCategoryId: any;
 
   productName = ""
-  pName:String = "";
-  pPrice:String = ""
-  constructor(private categoryService:CategoryService, private productService:ProductService, private router:Router){
+  pName: String = "";
+  pPrice: String = ""
+  constructor(private categoryService: CategoryService, private productService: ProductService, private router: Router) {
   }
 
-  ngOnInit(){
-    this.categoryService.getCategories().subscribe((cats:any)=>{
+  ngOnInit() {
+    this.categoryService.getCategories().subscribe((cats: any) => {
       this.categoryList = cats;
     })
   }
 
-  getCategoryId(catName:string){
-    this.categoryService.getCategoryId(catName).subscribe((selectedat:any)=> {
-      this.currCategoryId = selectedat[0]._id;
-      console.log(selectedat[0]._id);
-  });
+  getCategoryId(catName: string) {
+    this.categoryService.getCategoryId(catName).subscribe((selectedat: any) => {
+      this.currCategoryId = selectedat;
+      console.log(this.currCategoryId);
+    });
   }
 
 
-  addProduct(pName:String, pPrice: String){
-    // POST request to add products
-    this.productService.addProduct({name: pName,
-                                     _categoryId:this.currCategoryId,
-                                     price: pPrice
-                                    }).subscribe((addedProduct) => {
-                                      console.log(addedProduct);
-                                    });
-    this.router.navigate(['']);
+  addProduct(pName: String, pPrice: String) {
+    try {
+      // POST request to add products
+      this.productService.addProduct({
+        name: pName,
+        _categoryId: this.currCategoryId,
+        price: pPrice
+      }).subscribe(() => {
+        alert("Product Created..!");
+      })
+      this.router.navigate(['']);
+    } catch (error) {
+      console.error("error");
+    }
   }
 }

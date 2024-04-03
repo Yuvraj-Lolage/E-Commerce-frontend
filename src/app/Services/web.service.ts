@@ -6,7 +6,8 @@ import { HttpClient } from '@angular/common/http';
 export class WebService {
   readonly ROOT_URL;
   constructor(private http:HttpClient) {
-    this.ROOT_URL = "https://ecommerce-backend-mean.onrender.com";
+    // this.ROOT_URL = "https://ecommerce-backend-mean.onrender.com";
+    this.ROOT_URL = "http://localhost:3000"
   }
 
   /**

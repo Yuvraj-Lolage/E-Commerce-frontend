@@ -9,15 +9,15 @@ export class ProductService {
   constructor(private webService:WebService) { }
 
   addProduct(payload:object){
-    return this.webService.post('category/add-product', payload);
+    return this.webService.post("products/create", payload);
   }
 
   getProducts(){
-    return this.webService.get('category/products/all');
+    return this.webService.get('products');
   }
 
   getProductsFromCategory(cId:string){
-    return this.webService.get(`category/${ cId }/products`);
+    return this.webService.get(`products/${ cId }`);
   }
 
   //GET particular Product

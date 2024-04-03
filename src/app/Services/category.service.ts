@@ -13,6 +13,6 @@ export class CategoryService {
   }
 
   getCategoryId(catName:string){
-    return this.webService.get(`category/${ catName }`);
+    return this.webService.get(`category/getIdByName/${ catName }`);
   }
 }
