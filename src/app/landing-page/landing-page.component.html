@@ -3,7 +3,7 @@
   <div class="header">
     <div class="input-group">
       <button
-        class="btn btn-secondary dropdown-toggle"
+        class="btn category-btn dropdown-toggle"
         type="button"
         data-bs-toggle="dropdown"
         aria-expanded="true" id="btn-secondary"
@@ -28,36 +28,53 @@
         <option id="search-item" *ngFor="let category of categoryList" value="{{ category.name }}">
       </datalist>
     </div>
-    &nbsp;&nbsp;&nbsp;
-    <!-- Cart button -->
-    <button type="button" class="btn btn-secondary" id="btn-secondary">cart</button>
   </div>
 
-  <div class="card-deck">
-    <div *ngFor="let prod of productList">
-      <!-- Card -->
-      <div class="card bg-light h-100 p-4 text-dark text-center m-3">
-        <div
-          class="bg-image hover-overlay ripple"
-          data-mdb-ripple-color="light"
-        >
-          <img class="card-img-top" alt="Image not found" />
-          <a href="#!">
-            <div
-              class="mask"
-              style="background-color: rgba(251, 251, 251, 0.15)"
-            ></div>
-          </a>
-        </div>
-        <div class="card-body">
-          <h5 class="card-title">{{ prod["name"] }}</h5>
-          <p class="card-text">Rs. {{ prod["price"] }}</p>
-        </div>
-        <div class="mt-auto">
-          <a class="btn btn-primary">View</a>&nbsp;&nbsp;&nbsp;
+
+  <div *ngIf="isLoading; else elseblock">
+    <div class="spinner-container">
+      <div class="spinner-bg">
+        <div class="spinner-border text-secondary" role="status">
+          <span class="visually-hidden">Loading...</span>
         </div>
       </div>
-      <!--End Card -->
     </div>
   </div>
+  <ng-template #elseblock>
+    <div *ngIf="productList.length === 0 else elseCardBlock">
+      <div class="spinner-container">
+        <h3>No product Found</h3>
+      </div>
+    </div>
+  </ng-template>
+  <ng-template #elseCardBlock>
+    <div class="card-deck">
+      <div *ngFor="let prod of productList">
+        <!-- Card -->
+        <div class="card bg-light h-100 p-4 text-dark text-center m-3">
+          <div
+            class="bg-image hover-overlay ripple"
+            data-mdb-ripple-color="light"
+          >
+            <img class="card-img-top" src="https://assets-global.website-files.com/619e8d2e8bd4838a9340a810/64c590c754d6bc13ebd90cbc_ai_product_photo_styles.webp " alt="Image not found" />
+            <a href="#!">
+              <div
+                class="mask"
+                style="background-color: rgba(251, 251, 251, 0.15)"
+              ></div>
+            </a>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">{{ prod["name"] }}</h5>
+            <p class="card-text">Rs. {{ prod["price"] }}</p>
+          </div>
+          <div class="mt-auto">
+            <a class="btn btn-primary" [routerLink]="['product/', prod._id]">View</a>&nbsp;&nbsp;&nbsp;
+            <a class="btn btn-success">Add to Cart</a>
+          </div>
+        </div>
+        <!--End Card -->
+      </div>
+    </div>
+  </ng-template>
 </div>

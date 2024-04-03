@@ -13,6 +13,7 @@ export class LandingPageComponent {
   productList:any;
   categoryList:any;
   categoryId:any;
+  isLoading:boolean = true;
     constructor(private categoryService:CategoryService, private activatedRoute:ActivatedRoute, private router:Router, private productService:ProductService){ }
 
     ngOnInit(){
@@ -22,11 +23,11 @@ export class LandingPageComponent {
 
       this.productService.getProducts().subscribe((prodList:any) => {
         this.productList = prodList;
+        this.isLoading = false;
       });
 
       this.activatedRoute.params.subscribe((params: Params) => {
         this.categoryId = params['catId'];
-        // console.log("Ng ON init=>",this.categoryId);
         if(this.categoryId != undefined){
           this.getProductsOfCategory(this.categoryId);
         }

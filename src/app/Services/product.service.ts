@@ -22,7 +22,7 @@ export class ProductService {
 
   //GET particular Product
   getProductWithId(pId:string){
-    return this.webService.get(`product/${ pId }`);
+    return this.webService.get(`products/getById/${ pId }`);
   }
 
 

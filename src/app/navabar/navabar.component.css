@@ -1,1 +1,20 @@
+.navbar{
+  background-color: #304674 !important;
+  color: white;
+}
 
+.navbar-brand{
+  color: #b2cbde;
+}
+
+.nav-link{
+  color: white;
+  margin: 0 15px;
+}
+
+.nav-link.active{
+  background-color: #c6d3e3;
+  padding: 8px 20px;
+  border-radius: 10px;
+
+}
